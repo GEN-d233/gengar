@@ -1,3 +1,11 @@
+---
+title: 示例文章
+date: 2026-01-107
+category: wp
+tags: ["Markdown", "ctf", "基础漏洞"]
+excerpt: 0xgame 2025 Rubbish_Unser初识PHP反序列化
+---
+
 # 基础PHP反序列化漏洞
 
 ## 什么是序列化
@@ -272,5 +280,6 @@ throw new Exception("Rubbish_Unser");
 这会导致主动抛出一个异常（Exception），并终止当前脚本的正常执行流程
 
 异常抛出导致__destruct不执行的绕过代码最后会throw new Exception，导致对象正常销毁流程被打断，__destruct不触发。
+
 
 构造一个数组$b = array('1' => $a, '2' => null)，当数组中某个元素被设为null时，PHP 会提前回收该元素对应的对象，从而在异常抛出前触发__destruct，触发垃圾回收（GC）
