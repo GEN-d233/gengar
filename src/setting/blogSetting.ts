@@ -1,5 +1,5 @@
 //你想配置的分类类别
-export const categories = ["all", "技术", "前端", "开发", "生活"];
+export const categories = ["all", "技术", "web","生活"];
 // CC协议类型(无需改动)
 export type CCLicenseType =
   | "CC BY" //允许他人分享和改编作品，甚至商业使用
@@ -25,9 +25,9 @@ interface BlogCopyrightConfig {
 export const copyrightConfig: BlogCopyrightConfig = {
   showCopyright: true, //是否显示版权声明
   defaultLicense: "CC BY-NC-SA", //默认版权声明协议
-  author: "XuHaoYang", //作者
+  author: "GEN", //作者
   siteName: "个人博客", //你网站的名称
-  siteUrl: "https://xuhaoyang.top", //这里填写你的域名(当前网站)
+  siteUrl: "https://gen-d233.github.io/gengar/", //这里填写你的域名(当前网站)
 };
 
 //每一篇博客结尾的话
