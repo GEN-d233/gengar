@@ -5,7 +5,7 @@ export const AnimationText = "进步"; //动画字
 export const isRainbowGradient = true; //控制 BeforeAnimationText 的颜色效果，观察是否开启彩虹渐变
 
 //个人信息部分配置
-const AVATAR_FILENAME = "3599f98fb1dc3d763acd2b5cb46cf517.png"; //头像配置，头像需要放进public文件夹内，这里只写文件名和后缀
+const AVATAR_FILENAME = "ffe01023290fc2e6a03d0f9ce8546936.jpg"; //头像配置，头像需要放进public文件夹内，这里只写文件名和后缀
 //处理头像路径的函数(无需修改)
 export const getAvatarPath = (): string => {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
