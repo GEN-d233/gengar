@@ -12,29 +12,19 @@ export const getAvatarPath = (): string => {
   return basePath ? `${basePath}/${AVATAR_FILENAME}` : `/${AVATAR_FILENAME}`;
 };
 export const isBorder = true; //控制头像边框是否显示
-export const name = "陈博宁"; //名字
+export const name = "GEN"; //名字
 export const slogan =
   "Just Try My Best"; //个人宣言
 
 //https://simpleicons.org 图云的图标配置
 const slugs = [
-  "typescript",
-  "javascript",
-  "react",
-  "vuedotjs",
-  "Vite",
-  "html5",
-  "css",
-  "Vitest",
-  "ESLint",
-  "Prettier",
+  "Python",
+  "PHP",
   "C",
-  "C++",
-  "nodedotjs",
-  "nextdotjs",
-  "git",
+  "MYSQL",
+  "Kali Linux",
+  "Linux",
   "github",
-  "gitlab",
 ];
 /*
   关于技术栈图云配置说明
@@ -56,7 +46,7 @@ export const images = slugs.map(
 
 //关于我页面一二三段
 export const aboutMeP1 = "天津理工大学信息安全专业就读，2029年毕业 ";
-export const aboutMeP2 = "热爱技术，热爱生活，希望自己能创造更多价值 ";
+export const aboutMeP2 = "一个普通人 ";
 export const aboutMeP3 = "";
 
 //联系我页面配置
