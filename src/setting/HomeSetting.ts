@@ -9,5 +9,5 @@ export const subTitleBlueDecoration = "Developer";
 //打字机动画轮播数组
 export const TypewriterTexts = [
   "未来很美，放手去追",
-  "Python是最好的语言!",
+  "Python是世界上最好的语言!",
 ];
