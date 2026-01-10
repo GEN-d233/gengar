@@ -1,6 +1,6 @@
 ---
-title: 0xgame 2025 Rubbish_Unser wp
-date: 2026-01-107
+title: 0xgame 2025 Rubbish_Unser 详解
+date: 2026-01-07
 category: wp
 tags: ["web", "ctf", "基础漏洞"]
 excerpt: 初识PHP反序列化
@@ -283,5 +283,6 @@ throw new Exception("Rubbish_Unser");
 
 
 构造一个数组$b = array('1' => $a, '2' => null)，当数组中某个元素被设为null时，PHP 会提前回收该元素对应的对象，从而在异常抛出前触发__destruct，触发垃圾回收（GC）
+
 
 
