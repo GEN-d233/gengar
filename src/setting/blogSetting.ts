@@ -25,7 +25,7 @@ interface BlogCopyrightConfig {
 export const copyrightConfig: BlogCopyrightConfig = {
   showCopyright: true, //是否显示版权声明
   defaultLicense: "CC BY-NC-SA", //默认版权声明协议
-  author: "GEN", //作者
+  author: "G3ng@r", //作者
   siteName: "个人博客", //你网站的名称
   siteUrl: "https://gen-d233.github.io/gengar/", //这里填写你的域名(当前网站)
 };
