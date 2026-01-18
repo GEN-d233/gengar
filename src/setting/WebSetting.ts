@@ -1,5 +1,5 @@
 //网站基础配置
-export const webTitle = "GEN Blog"; // 网站标题：浏览器显示
+export const webTitle = "G3ng@r Blog"; // 网站标题：浏览器显示
 export const webDescription = "个人博客"; // 网站描述：浏览器显示
 
 //网站背景图配置
