@@ -12,7 +12,7 @@ export const getAvatarPath = (): string => {
   return basePath ? `${basePath}/${AVATAR_FILENAME}` : `/${AVATAR_FILENAME}`;
 };
 export const isBorder = true; //控制头像边框是否显示
-export const name = "GEN"; //名字
+export const name = "G3ng@r"; //名字
 export const slogan =
   "Just Try My Best"; //个人宣言
 
@@ -22,7 +22,7 @@ const slugs = [
   "PHP",
   "C",
   "MYSQL",
-  "Kali Linux",
+  "kalilinux",
   "Linux",
   "github",
 ];
@@ -46,7 +46,7 @@ export const images = slugs.map(
 
 //关于我页面一二三段
 export const aboutMeP1 = "天津理工大学信息安全专业就读，2029年毕业 ";
-export const aboutMeP2 = "一个普通人 ";
+export const aboutMeP2 = "只是一个普通人 ";
 export const aboutMeP3 = "";
 
 //联系我页面配置
