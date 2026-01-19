@@ -12,7 +12,7 @@ excerpt: 命令执行绕过
 
 PHP 在将数组,非数字,无穷大强制转换为字符串（string）时的默认行为,可用于无字母构造
 
-```PHP
+```php
 <?php
 error_reporting(0);
 
@@ -377,6 +377,7 @@ $_=[]._;$__=$_['='=='_'];
 ```
 
 参考文章:https://www.cnblogs.com/m1xian/p/18360023
+
 
 
 
