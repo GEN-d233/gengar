@@ -140,8 +140,8 @@ if (isset($_GET['0xGame'])) {
   - `__destruct()`：对象被销毁时（脚本结束、unse）
   - `__get($name)`：访问一个未定义（或不可访问）的属性时
   - `__invoke()`：当把对象当作函数调用时
-  - __call($name, $arguments)：调用一个不存在（或不可访问）的方法时
-  - __toString()：对象被当作字符串使用时
+  - `__call($name, $arguments)`：调用一个不存在（或不可访问）的方法时
+  - `__toString()`：对象被当作字符串使用时
 
 - 命令执行关键点
 
@@ -171,7 +171,7 @@ if (isset($_GET['0xGame'])) {
   - 如何绕过if条件判断？要求kiana 属性的值和RaidenMei属性的值不同但是要求MD5和哈希值相同，赋值使用的一个为false一个为空字符串来绕过（其实null也可以,都是空值嘛）
   - 怎么触发__invoke()？在GI类中我们发现__call方法,把GI类对象中的$furina实例化为HI3rd类对象
   - 怎么触发__call()？用一个不存在（或不可访问）的方法时，看到Mi类中的__toString方法中调用了game 属性的tks()方法，我们把$game实例化为GI类对象，该对象没有tks()方法，达成目的
-  - 最后把ZZZ类对象中的$yuzuha实例化为Mi类对象，调用__destruct()中echo $this->yuzuha时，会触发Mi类中的__toString()方法
+  - 最后把ZZZ类对象中的\$yuzuha实例化为Mi类对象，调用__destruct()中echo $this->yuzuha时，会触发Mi类中的__toString()方法
   - 把逆推的思路重新整理编写脚本
   - 
 
@@ -283,6 +283,7 @@ throw new Exception("Rubbish_Unser");
 
 
 构造一个数组$b = array('1' => $a, '2' => null)，当数组中某个元素被设为null时，PHP 会提前回收该元素对应的对象，从而在异常抛出前触发__destruct，触发垃圾回收（GC）
+
 
 
 
