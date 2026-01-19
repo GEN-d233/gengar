@@ -25,6 +25,7 @@ const slugs = [
   "kalilinux",
   "Linux",
   "github",
+  "burpsuite"
 ];
 /*
   关于技术栈图云配置说明
