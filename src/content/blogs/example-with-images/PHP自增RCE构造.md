@@ -1,3 +1,11 @@
+---
+title: PHP自增RCE构造
+date: 2026-01-19
+category: web
+tags: ["web", "ctf", "基础漏洞"]
+excerpt: 命令执行绕过
+---
+
 # PHP自增RCE构造
 
 ## 构造原理
@@ -368,3 +376,4 @@ $_=[]._;$__=$_['='=='_'];
 ```
 
 参考文章:https://www.cnblogs.com/m1xian/p/18360023
+
