@@ -1,6 +1,12 @@
-# PHP Session Upload Progress + 条件竞争 利用脚本
+---
+title: PHP Session Upload Progress + 条件竞争 利用脚本
+date: 2026-01-22
+category: web
+tags: ["web", "ctf", "脚本"]
+excerpt: 一个功能强大的脚本
+---
 
-PHP Session Upload Progress + 条件竞争 利用脚本
+# PHP Session Upload Progress + 条件竞争 利用脚本
 
 这个脚本源自于ctfshow中其他师傅的wp+AI优化，功能比较强大，web86-web82一把梭
 
@@ -179,5 +185,6 @@ try:
 except KeyboardInterrupt:
     print("\n[-] Stopped by user")
 ```
+
 
 让主线程休眠 1 秒（threading.Event().wait(1)）的核心目的是：避免主线程以“空循环”方式疯狂占用 CPU 资源，同时保持对程序状态的定期检查
