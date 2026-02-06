@@ -1,5 +1,5 @@
 //主标题
-export const mainTitle = "G3ng@r Blog";
+export const mainTitle = "G3ng4r Blog";
 //主题色装饰字
 export const mainTitleBlueDecoration = ".";
 //副标题
