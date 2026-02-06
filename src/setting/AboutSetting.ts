@@ -12,7 +12,7 @@ export const getAvatarPath = (): string => {
   return basePath ? `${basePath}/${AVATAR_FILENAME}` : `/${AVATAR_FILENAME}`;
 };
 export const isBorder = true; //控制头像边框是否显示
-export const name = "G3ng@r"; //名字
+export const name = "G3ng4r"; //名字
 export const slogan =
   "Just Try My Best"; //个人宣言
 
