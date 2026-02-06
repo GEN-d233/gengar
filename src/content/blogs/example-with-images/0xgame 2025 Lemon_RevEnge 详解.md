@@ -3,7 +3,7 @@ title: 0xgame 2025 Lemon_RevEnge 详解
 date: 2026-01-10
 category: wp
 tags: ["web", "ctf", "基础漏洞"]
-excerpt: 初识paython原型链污染
+excerpt: 初识python原型链污染
 ---
 
 [0xgame week1 web题](https://www.ctfplus.cn/problem-detail/1975492175605010432/description)，刚开始接触web安全时照着学长的wp复现，其实就是直接把payload复制粘贴当时也完全没理解这样做的意义，这两天翻出来发现还是不理解，找到了一些文章了解了Python原型链污染，试着自己写一篇wp强化记忆
@@ -249,3 +249,4 @@ post发包，把Content-Type改为json再访问目录../../flag即可
 
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=MzNhYzExODJhY2YxNzY1OTE3ZWVjMmIxN2ZhZjRiNzBfMVhZdjFZSVZqVlVDZlV0NnM5S05VaXliMnE0elpuM0FfVG9rZW46SDJsU2JoQlVWb1oyRnB4UEowUWN0U3hobnliXzE3NjgwNDU4MjY6MTc2ODA0OTQyNl9WNA)
+
