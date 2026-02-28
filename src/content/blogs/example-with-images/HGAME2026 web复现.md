@@ -1,6 +1,14 @@
+---
+title: HGAME2026 web复现
+date: 2026-03-01
+category: wp
+tags: ["web", "ctf", "wp"]
+excerpt: 部分题目复现
+---
+
 # HGAME2026 web复现
 
-## MyMonitor
+## **MyMonitor**
 
 GO语言代码审计 + 对象池污染
 
@@ -255,7 +263,7 @@ if(isset($_POST["submit"])) {
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=OWYyMzgyYmZjNDIyYjIwOTIxYmMyNWFlZGZkYWVlOGJfY0VyVzZROGtOZ3hXWWwyejhHNUhybFFwQzBSM0dhWU5fVG9rZW46TVJ6T2JEWHZsbzJqU0d4M1Z4d2NwZ3FJblJkXzE3NzIyOTk3MzA6MTc3MjMwMzMzMF9WNA)
 
-**魔理沙的魔法目录**
+## **魔理沙的魔法目录**
 
 在开发者工具的网络流中发现`record`的api,抓包修改`time`字段
 
@@ -847,4 +855,5 @@ request.interceptors.response.use(response => {
 });
 
 export default request;
+
 ```
