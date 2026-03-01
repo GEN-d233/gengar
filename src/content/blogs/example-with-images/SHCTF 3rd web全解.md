@@ -1,10 +1,18 @@
-# SHCTF 3rd web复现
+---
+title: SHCTF 3rd web全解
+date: 2026-03-02
+category: wp
+tags: ["web", "ctf", "wp"]
+excerpt: 第三届山河ctf复现
+---
+
+# SHCTF 3rd web全解
 
 不算特别难的题目，对我这种小白来说比较友好(
 
 可惜这场没怎么认真打😔
 
-## **ez-ping**
+## ez-ping
 
 [CTFping命令绕过及符号用法](https://blog.csdn.net/Hardworking666/article/details/120739082)
 
@@ -16,7 +24,7 @@
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjFkYzk3MzUwN2U0YjQxNjc2OGY0MWIwZjYzZTVmNDRfd2U4REV4UlBjS2E2Ym9EemFQeGhwZTNBRXB4N3Q5U0pfVG9rZW46Tlh0dWJBdDVUbzNwbDN4UFpwa2N1YWlublNjXzE3NzIzOTcwMzE6MTc3MjQwMDYzMV9WNA)
 
-## **上古遗迹档案馆**
+## 上古遗迹档案馆
 
 题目已经提示sql注入了，`1'`回显报错信息
 
@@ -30,7 +38,7 @@
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NTdlMWE5ZGE2MDc3OWQyZTA1NDgyYzcxMjRlMmJjYjBfaGZIa0RNQ2lvd3BiMHhrNE1LOWh5dmxwNWRwTDZCc0FfVG9rZW46TzU5N2JsN3dGb2R4eHJ4V0pzOGNEVjU5bmJJXzE3NzIzOTcwMzE6MTc3MjQwMDYzMV9WNA)
 
-## **calc?****js****?fuck!**
+## calc?js?fuck!
 
 源码简单粗暴，设置了白名单然后直接eval，考察JSFuck构造命令
 
@@ -93,7 +101,7 @@ JSFuck编码https://atlai.cn/tool_page/js_fuc
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGQ4ZmE3ZGM0NDEzMjYzMDk1OGY5MzUxMDhjNDQ2NzRfMm5xUkpCVFdBRWtPblFjZzh5TEx2SUdXZldPNHZiYmpfVG9rZW46TGNzdWJXZGRtbzlpMVN4Q0lqb2NHN2xDbnRoXzE3NzIzOTcwMzE6MTc3MjQwMDYzMV9WNA)
 
-## **kill_king**
+## kill_king
 
 打开新网页的开发者工具再进容器，查看源码，将result=win以post发送到check.php
 
@@ -310,7 +318,7 @@ mysql -u ctf_user -p ctf_password_114514 shop -e "UPDATE goods SET price = 0.00 
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=Njc5YWMwNmJlNzVhMjI4OGNmNzBiMTY3MWZjMDRkZTdfUmtvRU1aaFdxeVFXME43c2RQdENpbHVpUzl1VTVUU29fVG9rZW46TFNtVmI5Um9qb2VQVjh4WTMzaWM4VjY0bjRoXzE3NzIzOTcwMzE6MTc3MjQwMDYzMV9WNA)
 
-## **Ezphp**
+## Ezphp
 
 进去看到源码
 
@@ -446,7 +454,7 @@ echo urlencode($b);
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWY2MmI1YWZmNGNlMDYxN2JkNDdhNjY4Yjg1MTA1OThfZDVtcnlHaGRNNVBtMzZia1Fpbjlwc0NDUjBTVFFKVjRfVG9rZW46Qk1KZGJLOVR4bzNsZFl4SHFHY2NWa1RzbndMXzE3NzIzOTcwMzE6MTc3MjQwMDYzMV9WNA)
 
-## **Mini Blog**
+## Mini Blog
 
 /create接口的上传格式为xml，简单打XXE(其实没抓包第一反应是XSS来着...
 
@@ -458,7 +466,7 @@ echo urlencode($b);
 <post><title>cillo</title><content>&flag;</content></post>
 ```
 
-## **Eazy_Pyrunner**
+## Eazy_Pyrunner
 
 存在目录穿越，访问`?file=app.py`得源码
 
@@ -624,7 +632,7 @@ cmd自己构造就行，根目录下的/flag是没有读取权限的
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=MTEzNWY1MDE3YTMyZGE1YWY3ZDQwMTgzZDc3ZDQyYTVfbENvam5Bc2F4VEpubXNSVHd3SkY0WENpRGdabldVR2hfVG9rZW46VGtnd2JVZkpzb1ZuRXl4Z0I3RGNTTzF3bnYwXzE3NzIzOTcwMzE6MTc3MjQwMDYzMV9WNA)
 
-## **ez_race**
+## ez_race
 
 既然题目已经提示条件竞争了就去寻找延迟条件作为竞争窗口,看到`time.sleep(1.0)`
 
@@ -718,7 +726,7 @@ script -q -f -c 'echo ZsQ | sudo -S cat /flag' /dev/null
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=OTFjMmZlMTM3ODE4NmMwZmYyNmJmNDNhZTA3YmU0NDhfRnQ1dmpOb0N5UFdxOUtnWFRvT09ZejV6ZHgyODhObjVfVG9rZW46RUFsdGIybG1xb2tmemt4TVR5c2NLbXk4bmplXzE3NzIzOTcwMzE6MTc3MjQwMDYzMV9WNA)
 
-## **BabyJavaUpload**
+## BabyJavaUpload
 
 上传普通文件访问文件路径回显404，尝试修改目录回显500
 
@@ -741,7 +749,7 @@ script -q -f -c 'echo ZsQ | sudo -S cat /flag' /dev/null
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=MDhmNWUyNGQ4OTY2NGRiZTk4YTI3NmFlZWI3ZjljZjNfaDIydHVSc3RnUmVMUW8xbXhXNUN1TEZCTlBKbFFxakpfVG9rZW46S3psQ2J3TVBlb0dueXN4NU05T2NqWWM1bjBkXzE3NzIzOTcwMzE6MTc3MjQwMDYzMV9WNA)
 
-## **你也懂java？**
+## 你也懂java？
 
 还没有系统地学习Java反序列化，第一次打跟着简单学习一下
 
@@ -825,5 +833,6 @@ public class SerializeDemo {
     }
 }
 ```
+
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDI5NWM5ZDM5M2MxZGRhMDUzODVjODlmYjdiZjNiOTZfRzQ2RXN1aURwaXpkVzhTckZxWHNoZ2pwNHI5T3pZcE5fVG9rZW46SUo1cWJMOHlEb2hZdHR4NnA0S2NZbkp0bnllXzE3NzIzOTcwMzE6MTc3MjQwMDYzMV9WNA)
