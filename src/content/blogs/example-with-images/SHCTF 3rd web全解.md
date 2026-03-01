@@ -189,7 +189,7 @@ if __name__ == "__main__":
     print(f"?who=1&are=1&you={final_payload}")
 ```
 
-## **05_em_v_CFK**
+## 05_em_v_CFK
 
 dirsearch目录扫描
 
@@ -302,7 +302,7 @@ mysql -u ctf_user -p ctf_password_114514 shop -e "UPDATE goods SET price = 0.00 
 
 其他解法:上传一句话木马，蚁剑连接后把原来的index.php删除，修改价格后上传新的index.php
 
-## **Go**
+## Go
 
 简单的页面，dirsearch也没扫出东西
 
@@ -840,3 +840,4 @@ public class SerializeDemo {
 参考wp
 https://blog.csdn.net/RisingFan/article/details/157684234
 https://leyi.live/2026/02/12/%E7%AC%AC%E4%B8%89%E5%B1%8A%E5%B1%B1%E6%B2%B3%E6%9D%AFWeb%E5%85%A8%E9%A2%98%E8%A7%A3/
+
