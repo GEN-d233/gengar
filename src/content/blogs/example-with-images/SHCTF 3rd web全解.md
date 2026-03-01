@@ -836,3 +836,7 @@ public class SerializeDemo {
 
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDI5NWM5ZDM5M2MxZGRhMDUzODVjODlmYjdiZjNiOTZfRzQ2RXN1aURwaXpkVzhTckZxWHNoZ2pwNHI5T3pZcE5fVG9rZW46SUo1cWJMOHlEb2hZdHR4NnA0S2NZbkp0bnllXzE3NzIzOTcwMzE6MTc3MjQwMDYzMV9WNA)
+
+参考wp
+https://blog.csdn.net/RisingFan/article/details/157684234
+https://leyi.live/2026/02/12/%E7%AC%AC%E4%B8%89%E5%B1%8A%E5%B1%B1%E6%B2%B3%E6%9D%AFWeb%E5%85%A8%E9%A2%98%E8%A7%A3/
