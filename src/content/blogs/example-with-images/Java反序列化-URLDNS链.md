@@ -1,3 +1,11 @@
+---
+title: Java反序列化-URLDNS链
+date: 2026-03-03
+category: web
+tags: ["web", "ctf", "Java反序列化"]
+excerpt: 开始Java反序列化学习
+---
+
 # Java反序列化-URLDNS链
 
 正式开始学习Java反序列化，在这个过程中写点博客的同时加强理解
@@ -187,5 +195,6 @@ public static void main(String[] args) throws IOException, NoSuchFieldException,
 ```
 
 DNS请求成功
+
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NDEwODFmOTk5MDk4ZDcyYTgwN2MxYWM3MjlhMDUwMDVfdnFlY0laVzVsdGQwQlQ5UXhyaHRqc1JhaEdmUG40allfVG9rZW46T2daUGJzSTVSb1lYR0V4U1cxNmNIZzRabmRjXzE3NzI0Njk5MTQ6MTc3MjQ3MzUxNF9WNA)
