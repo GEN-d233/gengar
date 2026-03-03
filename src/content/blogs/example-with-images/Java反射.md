@@ -1,3 +1,11 @@
+---
+title: Java反射
+date: 2026-03-04
+category: web
+tags: ["web", "ctf", "Java反序列化"]
+excerpt: Java反射浅析
+---
+
 # Java反射
 
 ## 反射的定义
@@ -258,4 +266,5 @@ Method m = clazz.getDeclaredMethod("eat", String.class);
 Student s = new Student();
 m.setAccessible(true);
 Object Rsecret = m.invoke(s, "参数1","参数2");
+
 ```
