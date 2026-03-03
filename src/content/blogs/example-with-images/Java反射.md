@@ -49,15 +49,20 @@ Class example3 = student.getClass();
 
 `Constructor<?>[]getConstructors()`:返回所有公共构造方法对象的数组
 
+
 `Constructor<?>[]getDeclaredConstructors()`:返回所有构造方法对象的数组
+
 
 `Constructor<T>getConstructor(Class<?>...parameterTypes)`:返回单个公共构造方法对象
 
+
 `Constructor<T>getDelcaredConstructor(Class<?>...parameterTypes)`:返回单个构造方法对象
+
 
 ### Constructor类中用于创建对象的方法
 
 `T newInstance(Obeject... initargs)`:根据指定的构造方法创建对象
+
 
 `setAccessible(boolean flag)`:设置为true，表示取消访问检查
 
@@ -209,15 +214,19 @@ Student G3ng4r = (Student) con.newInstance("G3ng4r",20);
 
 `Field[] getFields()`:返回所有公共成员变量对象的数组
 
+
 `Field[] getDeclaredFields()`:返回所有成语变量对象的数组
 
+
 `Field[] getField(String name)`:返回单个公共成员变量对象
+
 
 `Field[] getDeclaredField(String name)`:返回单个成员变量对象
 
 ### Field类中用于创建对象的方法
 
 `void set(Object obj,Object value)`:赋值
+
 
 `Object get (Object obj)`:获取值
 
@@ -227,9 +236,12 @@ Student G3ng4r = (Student) con.newInstance("G3ng4r",20);
 
 `Method[] getMethods()`:返回所有公共成员方法对象的数组，包括继承的
 
+
 `Method[] getDeclaredMethods()`:返回所有成员方法对象的数组，不包括继承的
 
+
 `Method getMethod(String name,Class<?>..parameterTypes)`:返回个人公共成员方法对象
+
 
 `Method getDeclaredMethod(String name,Class<?>...parameterTypes)`:返回单个成员方法对象
 
@@ -268,3 +280,4 @@ m.setAccessible(true);
 Object Rsecret = m.invoke(s, "参数1","参数2");
 
 ```
+
