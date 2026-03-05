@@ -263,7 +263,7 @@ if(isset($_POST["submit"])) {
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=OWYyMzgyYmZjNDIyYjIwOTIxYmMyNWFlZGZkYWVlOGJfY0VyVzZROGtOZ3hXWWwyejhHNUhybFFwQzBSM0dhWU5fVG9rZW46TVJ6T2JEWHZsbzJqU0d4M1Z4d2NwZ3FJblJkXzE3NzIyOTk3MzA6MTc3MjMwMzMzMF9WNA)
 
-利用`CVE-2025-55182`,写PHP代理脚本利用原型链污染实现内存马注入
+利用`CVE-2025-55182`,写PHP代理脚本利用原型链污染实现内存马注入，贴一下hcn0师傅的脚本
 
 ```PHP
 <?php
@@ -907,5 +907,6 @@ request.interceptors.response.use(response => {
 export default request;
 
 ```
+
 
 
