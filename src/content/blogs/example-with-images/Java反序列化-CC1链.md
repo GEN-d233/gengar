@@ -681,7 +681,9 @@ Windows计算器弹出
 CC链和DNSURL链简直不是一个难度，真的需要静下心来，于我而言也是莫大的挑战，离实战也有很大差距
 
 
-
+参考文章
+https://www.bilibili.com/video/BV1no4y1U7E1/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&vd_source=52eba7627ed3e9842c78702b92c1bba9
+https://drun1baby.top/2022/06/06/Java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96Commons-Collections%E7%AF%8701-CC1%E9%93%BE/
 
 
 
