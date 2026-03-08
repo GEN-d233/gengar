@@ -49,7 +49,7 @@ export const images = slugs.map(
 //关于我页面一二三段
 export const aboutMeP1 = "天津理工大学信息安全专业大一小登，弱鸡web手 ";
 export const aboutMeP2 = "想要在世界上留下痕迹的普通人 ";
-export const aboutMeP3 = "明理湖水怪替补队员(大概";
+export const aboutMeP3 = "明理湖水怪替补队员(大概?";
 
 //联系我页面配置
 export const mainContactMeDescription =
