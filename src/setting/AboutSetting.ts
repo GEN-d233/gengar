@@ -14,7 +14,7 @@ export const getAvatarPath = (): string => {
 export const isBorder = true; //控制头像边框是否显示
 export const name = "G3ng4r"; //名字
 export const slogan =
-  "Just Try My Best"; //个人宣言
+  " A Nobody "; //个人宣言
 
 //https://simpleicons.org 图云的图标配置
 const slugs = [
@@ -25,7 +25,8 @@ const slugs = [
   "kalilinux",
   "Linux",
   "github",
-  "burpsuite"
+  "burpsuite",
+  "javascript";
 ];
 /*
   关于技术栈图云配置说明
@@ -46,8 +47,8 @@ export const images = slugs.map(
 // ];
 
 //关于我页面一二三段
-export const aboutMeP1 = "天津理工大学信息安全专业就读，2029年毕业 ";
-export const aboutMeP2 = "只是一个普通人 ";
+export const aboutMeP1 = " 天津理工大学信息安全专业大一小登，弱鸡web手 ";
+export const aboutMeP2 = " 想要在世界上留下痕迹的普通人 ";
 export const aboutMeP3 = "";
 
 //联系我页面配置
