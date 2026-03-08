@@ -24,7 +24,7 @@ excerpt: 这里是...地狱啊...
 
 一般来说，攻击是从尾部寻找危险方法出发去寻找头能进行序列化的对象，首先寻找危险方法，然后重复寻找调用前一个方法的其他类的方法，知道该方法能够被可序列化类调用的`readObject()`进行调用
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NDFiYjFiYmQ5OWVhMDMyY2I2NmQ0ODg1NzI4Y2NhYzJfSHFmN3IwVHRGNWF5RGYwUElyQ0hJVUZ2ZDdCMHZtTnlfVG9rZW46T2dRY2JORnoxb3NTQW14Y2RUa2NwYktMbnRnXzE3NzI5OTY2MzE6MTc3MzAwMDIzMV9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC1_attack.png)
 
 ## 0x04 CC1链挖掘
 
@@ -51,7 +51,7 @@ public interface Transformer {
 
 在`Transformer`接口`ctrl + alt + B`查看实现接口的类
 
-![img](public/CC1/CC11.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC11.png)
 
 查看实现类`InvokerTransformer` 具体的`transform()`方法
 
@@ -105,7 +105,7 @@ new InvokerTransformer("exec",new Class[]{String.class},new Object[]{"calc"}).tr
 
 按照反序列化流程接下来就该找同样调用`transform()`的地方，我们`右键+Find Usages`查找
 
-![img](public/CC1/CC12.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC12.png)
 
 在`TransformedMap`类中的`checkSetValue()`方法中`valueTransformer`调用了`transform()`方法
 
@@ -226,7 +226,7 @@ public Object setValue(Object value) {
 
 在这个方法中`parent`实际上就是我们创建的`TransformedMap`实例`transformedMap`
 
-![img](public/CC1/CC13.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC13.png)
 
 因此在**value = parent.checkSetValue(value);**这一行中调用的是`TransformedMap`类中的`checkSetValue()`方法，达成了我们的目的
 
@@ -238,15 +238,15 @@ public Object setValue(Object value) {
 
 在我们Demo的`for(Map.Entry entry: transformedMap.entrySet())`该行打上断点调试
 
-![img](public/CC1/CC14.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC14.png)
 
 单步进入来到`TransformedMap`的父类`AbstractInputCheckedMapDecorator` 的`entrySet()`方法，
 
-![img](public/CC1/CC15.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC15.png)
 
 继续跟进来到`TransformedMap.isSetValueChecking()`,判断`valueTransformer`的值存在则返回true，显然poc中该值存在，返回true，进入`entrySet()`的if代码块`return new EntrySet(map.entrySet(), this);`
 
-![img](public/CC1/CC16.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC16.png)
 
 ```Java
 protected EntrySet(Set set, AbstractInputCheckedMapDecorator parent) {
@@ -263,15 +263,15 @@ return new EntrySet(map.entrySet(),transformedMap);
 
 此时`EntrySe`t的`parent`值被设为`transformedMap`
 
-![img](public/CC1/CC17.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC17.png)
 
 然后返回到我们的poc
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=OGQ4ZDdhMjM1NTA1NzE0OTA4ODdmM2ZmNTg3YzY1ZmFfZGVhaEZ6VkdjblVmTTdjWVN3dUF1dUtpdE1NaG52cjJfVG9rZW46SVVDcWJEcUphb3R3SGt4cm1SRWNRRlV2bndiXzE3NzI5OTY2MzE6MTc3MzAwMDIzMV9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC18.png)
 
 继续跟进到`next()`方法，返回一个**`MapEntry`****对象**
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NzEzMTQ4Mzg0Y2YzNWNhYTRiODM5OTNiNWE2ODFlZjZfRmdubnEySXVvNkN3a2U4dVNsRlJydkJxZzRTNzdHeUdfVG9rZW46RG9ndWI5amIyb01RVjJ4bldISGNOZ1hwbnJlXzE3NzI5OTY2MzE6MTc3MzAwMDIzMV9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC19.png)
 
 进入`MapEntry`构造方法
 
@@ -284,11 +284,11 @@ return new EntrySet(map.entrySet(),transformedMap);
 
 找到了`AnnotationInvocationHandler`类
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=MTJlMmU2ZWQxNGY1YTNjN2UyNjY3NTIxOTEwZDA3MDRfT3pkeDZXaG5OU3B1SDJLWDV6WlN5b0JHeGdwVEpyQnFfVG9rZW46UVVncmI1eVBHb2tiS0h4V2RWSmNNQ0dvbkdjXzE3NzI5OTY2MzE6MTc3MzAwMDIzMV9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC11.png)
 
 可能有师傅没找到这个类，这里我也给出解决方案
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=Njc5NDZkNmQ4MTA0NDkwYjAyNDliMTA0NzM5NWFhOGNfREdYSXFqeGhvZzRWT2ZVenpYQnVkdERqMjhlV3NsUGtfVG9rZW46V0JNaGIxTFoxb3R2YTB4Q2lKTmNFS1hGbmhoXzE3NzI5OTY2MzE6MTc3MzAwMDIzMV9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC112.png)
 
 该类的readObject()方法中调用了`setValue()`这么完美符合要求真的不是故意设计的吗
 
@@ -481,11 +481,11 @@ unserialize("ser.bin");
 
 直接运行还是不无法进行序列化操作，我们在两个个if条件判断打上断点进行调试
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=YmIzN2RjZTcyZjAyOThmNzJmYmUzNTYzMmVjMTRiNTFfbFpnanZIcDBvVXpseW5WVmxzUjcxUXMxcDBxWkpkMGZfVG9rZW46RXgwUWJja0NUbzNBS1p4QXpXYWNubUxDbmZkXzE3NzI5OTY2MzI6MTc3MzAwMDIzMl9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC113.png)
 
 调试面板中`memberType=null`跳出了第一个if判断
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=MDNjNzIwNjNhZTVhMTg2ODYxODkyYTA3MjJkMzEyMDdfeGJRYkFrYW9saFhsQ1dyeEpzQnhZYWg1N0NPZ1NVNUVfVG9rZW46UzNCd2JhMzJmb0FVS0x4Uk94ZmNidzRXbmpmXzE3NzI5OTY2MzI6MTc3MzAwMDIzMl9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC114.png)
 
 把断点打高看看`memberType`值是怎么被操作的
 
@@ -495,7 +495,7 @@ unserialize("ser.bin");
 - 在447行`name`获取`memberValue` 的键名
 - 在446行`memberTypes`通过查找`memberTypes` 的name获取
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NDc1ZWMxNTVjZDJlOWM0NDZmOWNmYzEyMjExNDc3ZjJfa3VYNEl5MWZzTXk4dGlWRmNiemJjOWxMcmt6cGF5MkdfVG9rZW46RGdMcmJlYWRob2t0aDl4NURBNGN6d1A1bjljXzE3NzI5OTY2MzI6MTc3MzAwMDIzMl9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC115.png)
 
 由于在`Override`中没有定义任何方法，则`memberTypes` 是一个空的 `Map`，所以`memberTypes.get("anything")`实际上是`null`
 
@@ -522,13 +522,13 @@ public @interface Target {
 
 但是此时仍然`memberType=null`，还是没能进入if代码块
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=MmVmMDQ2OGYxNzI2ZjU2NDRjY2Q2ZmMzMDlhYTkwYmJfRFhEVVBMdXNEMHVIVEp1V2hhbU5VWFpZc0RUeTdZN2VfVG9rZW46VFkwQmJveDRob0tVMGJ4YjM3amNoNTB2bmZiXzE3NzI5OTY2MzI6MTc3MzAwMDIzMl9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC116.png)
 
 这是因为执行`Class<?> memberType = memberTypes.get(name)`时，没有找到名为"G3n"的成员属性，因此我们需要将poc中`hashMap.put()`传递的键名改为`memberTypes`拥有的成员属性（即value），就能成功满足第一个if条件判断
 
 第二个if判断`value`是否属于`memberType`表示的类，这里能够直接进入就不过多赘述了
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=MWNhZGQ0ZGMwYzMxMmZhZjU2ZjI4NTgzMmYxY2FlZjdfZ1pKNXpSNGtWcVpjWllkTEJLY0wyZ0Yxd2lxejJlR1dfVG9rZW46UWEwdmJRb0JZb0dHVzh4QWVKR2M5Ujd5bmFoXzE3NzI5OTY2MzI6MTc3MzAwMDIzMl9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC117.png)
 
 #### 问题三
 
@@ -562,7 +562,7 @@ public Object transform(Object input) {
 
 因此我们可以把`new ConstantTransformer(Runtime.class)`作为第一个`transformers`数组的第一个元素，在触发`ChainedTransformer.transform()`时，先执行`ConstantTransformer(Runtime.class).transform("g4r")`，且忽略输入 "g4r"，直接返回`Runtime.class`并作为下一个元素调用`transform()`方法的参数
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NTkxYzlkN2EwZjk3ZDUzYzkxZDhkYWY1OWUxNmMyMzJfRFVIRndvYW9TSk0zY0NyZkpxdzVRRDg0eFNwaE0ydklfVG9rZW46SWMwSmJXN01ib1pTTUJ4T0JDbGNOS3VYbjNhXzE3NzI5OTY2MzI6MTc3MzAwMDIzMl9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC118.png)
 
 那么三个问题都得到了解决这条链子也算正式打通了
 
@@ -635,7 +635,7 @@ ChainedTransformer
 HashMap
 ```
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=OWE2ZDg2MGQ5ZjNjZGE5ZDczN2U5OWI4M2QwZWM4OTJfUFFaSFI4UmRBbzROSWNCbFZpWEJEQ1RDR25PUlpFcGlfVG9rZW46T284b2J5bXhab3JMM3p4Y1N0NWNpTFFXbjhlXzE3NzI5OTY2MzI6MTc3MzAwMDIzMl9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC120.png)
 
 ## 0x08 反序列化分析
 
@@ -671,7 +671,7 @@ transformers[3].transform(runtimeInstance) // InvokerTransformer("exec", {"calc"
 Windows计算器弹出
 ```
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=ODkxMmZiYWE1OTIwNmJjNTYxMThmMDlkOWIwMTU5OTBfME45VmRPVVlxSGxXc2M0QWhsN2hGRGE0WmpDNEhZN2lfVG9rZW46VW5aYWJYbGpEb3B0OFl4Q0lpbmNSSTNpblVlXzE3NzI5OTY2MzI6MTc3MzAwMDIzMl9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC119.png)
 
 ## 0x09 写在后面
 
@@ -679,4 +679,5 @@ Windows计算器弹出
 
 
 CC链和DNSURL链简直不是一个难度，真的需要静下心来，于我而言也是莫大的挑战
+
 
