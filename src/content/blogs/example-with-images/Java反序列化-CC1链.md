@@ -51,7 +51,7 @@ public interface Transformer {
 
 在`Transformer`接口`ctrl + alt + B`查看实现接口的类
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=Mjg5NjJlODEwNTg4MzM3OWYwODFlMGVkOTgxMzk0YjJfbHF0clNJV0VaRVdKZ25SbDc1clRvQWVWYjhXcjFBUjVfVG9rZW46UFVJWGIxSXlLb24yaDd4ZkdXRmM3Nlg1bjhmXzE3NzI5OTY2MzE6MTc3MzAwMDIzMV9WNA)
+![img](public/CC1/CC11.png)
 
 查看实现类`InvokerTransformer` 具体的`transform()`方法
 
@@ -105,7 +105,7 @@ new InvokerTransformer("exec",new Class[]{String.class},new Object[]{"calc"}).tr
 
 按照反序列化流程接下来就该找同样调用`transform()`的地方，我们`右键+Find Usages`查找
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NDQ2Y2FhNjFkZDVmMWZmNzllZTFkMjViNGM2NjI4MzZfZFNLY0NIMGdVWlQwVGFIN3JVdm42ZWhpclFvWGg5a1BfVG9rZW46VmxGcGJCTWhVb2tHTUF4Uk9NNGM3RGE1bnVlXzE3NzI5OTY2MzE6MTc3MzAwMDIzMV9WNA)
+![img](public/CC1/CC12.png)
 
 在`TransformedMap`类中的`checkSetValue()`方法中`valueTransformer`调用了`transform()`方法
 
@@ -226,7 +226,7 @@ public Object setValue(Object value) {
 
 在这个方法中`parent`实际上就是我们创建的`TransformedMap`实例`transformedMap`
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDUyM2U1ZWRhZWI0YmM0YmNmOWEyMzVlZGM1ODlkMDhfdXhOMUFKMTVqRDkzeDFsZmtaUjVvZjEzZ29HSThHazJfVG9rZW46T0xuemJlejFob2Nub2Z4OHhCbGNveHJabllkXzE3NzI5OTY2MzE6MTc3MzAwMDIzMV9WNA)
+![img](public/CC1/CC13.png)
 
 因此在**value = parent.checkSetValue(value);**这一行中调用的是`TransformedMap`类中的`checkSetValue()`方法，达成了我们的目的
 
@@ -238,15 +238,15 @@ public Object setValue(Object value) {
 
 在我们Demo的`for(Map.Entry entry: transformedMap.entrySet())`该行打上断点调试
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NWY5ZDY3Njc1MDMxMDI5NjA0NGU5OWZlOTllZDRmZmRfTzhlemxIeHRrUVVaemZET09yRHl1V3BQTHF2czkxRnVfVG9rZW46RHVPamJJMVFMbzEzelF4aEYydWNVZm1IbnpiXzE3NzI5OTY2MzE6MTc3MzAwMDIzMV9WNA)
+![img](public/CC1/CC14.png)
 
 单步进入来到`TransformedMap`的父类`AbstractInputCheckedMapDecorator` 的`entrySet()`方法，
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTcxYzYzMmEyZDBkZWQzZjc0NGZjMzIzNTFkYzJkYzJfVlJOdlZ5WlVkcTBISThTd09hTEd0UmczalpQWTVQZkNfVG9rZW46QmU1TmJWTVJub1k1Q1N4enRpQWNLS3hsbmlnXzE3NzI5OTY2MzE6MTc3MzAwMDIzMV9WNA)
+![img](public/CC1/CC15.png)
 
 继续跟进来到`TransformedMap.isSetValueChecking()`,判断`valueTransformer`的值存在则返回true，显然poc中该值存在，返回true，进入`entrySet()`的if代码块`return new EntrySet(map.entrySet(), this);`
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NGY4ODZjZDEwY2Q0Yzg1ZTZmZWY3MTFhOTJhYjQ5ZDRfZ2djTEc4dFY1bkJvRFFxRmhmMlJLeFZHWG5Tanlldk9fVG9rZW46TXdQN2JnWTI2b3Fnbnh4eThJWWNWMVNyblJjXzE3NzI5OTY2MzE6MTc3MzAwMDIzMV9WNA)
+![img](public/CC1/CC16.png)
 
 ```Java
 protected EntrySet(Set set, AbstractInputCheckedMapDecorator parent) {
@@ -263,7 +263,7 @@ return new EntrySet(map.entrySet(),transformedMap);
 
 此时`EntrySe`t的`parent`值被设为`transformedMap`
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=MDRhNjkyZjg2N2IyNmEzZDZhZDFhMmYxMjYwMmZjNGVfaGlDamFIaEdxdmVaY0lhTGRPRjlOSGtuMWJZVHA0MDFfVG9rZW46S0lWTGJtQjhSb1lmMTB4RWpsdGNKMFFGblBkXzE3NzI5OTY2MzE6MTc3MzAwMDIzMV9WNA)
+![img](public/CC1/CC17.png)
 
 然后返回到我们的poc
 
@@ -679,3 +679,4 @@ Windows计算器弹出
 
 
 CC链和DNSURL链简直不是一个难度，真的需要静下心来，于我而言也是莫大的挑战
+
