@@ -24,7 +24,7 @@ excerpt: 这里是...地狱啊...
 
 一般来说，攻击是从尾部寻找危险方法出发去寻找头能进行序列化的对象，首先寻找危险方法，然后重复寻找调用前一个方法的其他类的方法，知道该方法能够被可序列化类调用的`readObject()`进行调用
 
-![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC1_attack.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1/CC1attack.png)
 
 ## 0x04 CC1链挖掘
 
@@ -679,5 +679,6 @@ Windows计算器弹出
 
 
 CC链和DNSURL链简直不是一个难度，真的需要静下心来，于我而言也是莫大的挑战
+
 
 
