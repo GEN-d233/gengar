@@ -22,10 +22,10 @@ const slugs = [
   "PHP",
   "C",
   "MYSQL",
-  "kalilinux",
-  "Linux",
-  "github",
-  "burpsuite",
+  //"kalilinux",
+  //"Linux",
+  //"github",
+  //"burpsuite",
   "javascript";
 ];
 /*
