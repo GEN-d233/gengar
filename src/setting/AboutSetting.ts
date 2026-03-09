@@ -26,7 +26,7 @@ const slugs = [
   //"Linux",
   //"github",
   //"burpsuite",
-  "javascript";
+  "javascript"
 ];
 /*
   关于技术栈图云配置说明
