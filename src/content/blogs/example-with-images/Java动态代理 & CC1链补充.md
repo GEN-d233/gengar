@@ -1,3 +1,11 @@
+---
+title: Java动态代理 & CC1链补充
+date: 2026-03-11
+category: Java
+tags: ["web", "ctf", "Java反序列化"]
+excerpt: 正版链?还有盗版链?
+---
+
 # Java动态代理 & CC1链补充
 
 ## 0x01 写在前面
@@ -73,7 +81,7 @@ public static Object newProxyInstance(ClassLoader loader,
 
 ### 代码实现
 
-#### **两个要点**
+#### 两个要点
 
 1. 我们代理的是接口，而不是单个用户
 2. 代理类是动态生成的，而非静态定死
@@ -164,8 +172,7 @@ public class Client {
 }
 ```
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTAyNTVlZTE0ZDVmOTkyM2E3NjM1NjE3YjcxMzU4YjZfTE1zSE90b2pmRFJrc2hJR3NmZDFZNk5sUU9UVm1CSGNfVG9rZW46QTNDamJuZG5Hb3lrZFR4elNNZmNoYXNxbmFjXzE3NzM4MzAxOTg6MTc3MzgzMzc5OF9WNA)
-
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1proxy/CC1proxy.png)
 ## 0x03 正版CC1链
 
 ### 挖掘分析
@@ -245,7 +252,7 @@ public Object invoke(Object proxy, Method method, Object[] args) {
 
 既然如此就来找`memberValues`还调用了什么其他方法，在readObject()中其调用了`entrySet()`
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=N2JjNjkxYWNkMzgzYjk1MTU4M2FkZDAwYzdlM2UzOTBfcFNxWHlBdFVlTEdsSkZsb1c3YnFxWVFzRUh5c3lMaHhfVG9rZW46UXpFSGJONlpBb2szbEh4aGNoMGN0NVpSbm05XzE3NzM4MzAxOTg6MTc3MzgzMzc5OF9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1proxy/CC1proxy1.png)
 
 那我们只需要把`memberValues`改为代理对象，当调用代理对象的方法，那么就会跳到执行 `invoke()` 方法，最终完成整条链子的调用
 
@@ -328,7 +335,7 @@ invocationHandler = (InvocationHandler) AIHConstructor.newInstance(Target.class,
 
 ### 执行效果
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NDUwZDIxYzM4MWFhZGNiOTE5OGNmMDQzN2U1ZmNmMDFfT1dURVo3bnBZNlA3TEo5SXpGSW50RzZPZ01IdlVPVXlfVG9rZW46RlZTQWJQZlFzb005Y2p4T3VqWmNlb29JbkZmXzE3NzM4MzAxOTg6MTc3MzgzMzc5OF9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1proxy/CC1proxy2.png)
 
 ## 0x04 总结
 
@@ -346,7 +353,7 @@ HashMap
 Map(Proxy)#entrySet
 ```
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NjM3OTJiYWE3ZjZiNzJhOWMxZTdlZWM0ODNiMjg4YjlfaDlUbzROZXRzeTZZY2lXbGhCTFdTOWQ0WkN2VWpDU2RfVG9rZW46RnhRQWJkVU5Lb2FOZFd4NGxtamNIeTlGblNlXzE3NzM4MzAxOTg6MTc3MzgzMzc5OF9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC1proxy/CC1proxy3.png)
 
 参考文章
 
