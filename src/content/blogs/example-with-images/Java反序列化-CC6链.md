@@ -1,3 +1,12 @@
+---
+title: Java反序列化-CC6链
+date: 2026-03-12
+category: Java
+tags: ["web", "ctf", "Java反序列化"]
+excerpt: 我的天啊，Java大人
+---
+
+
 # Java反序列化-CC6链
 
 ## 0x01 写在前面
@@ -177,27 +186,27 @@ unserialize("ser.bin");
 
 看来还是得进入`put()`寻找问题，打上断点进行调试
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=MjhhOTJkNmQ5NTQyMzI2MzQ1M2I3ZWZkYWUyM2NmNTNfc2s4UVREQTFVTDVqenNhUXA4NGJSZzlJT0F0aHZKcENfVG9rZW46UzlUbGJaV01Zb0xlOEd4cVJ1OGNUNUk2blpmXzE3NzM4MzE3OTI6MTc3MzgzNTM5Ml9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC6/CC6.png)
 
 进入HshMap中的`hash()`*方法*
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDMxODZmYTI1ZmQ2M2QyMDY1OTRmZDNhMGI3MGYyMDBfY1E2bnA2RHhZcXNodGV5TUU2Nzd2dEUyOVZNQkF3NUFfVG9rZW46TlNCaWJBbG5vbzkwUDd4NVVtYWN2T253bkFoXzE3NzM4MzE3OTI6MTc3MzgzNTM5Ml9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC6/CC61.png)
 
 在`hash()`方法中调用`hashCode()`
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=YjgyNjMzZTFkMzNhZjc1ZmM2MTJkMWExY2U4YTBjMmFfd24xeHFmbjBsenV0TExaUWE1VGxRUkpDaWx4TldSaGVfVG9rZW46UEkyWWJiWTRub0ZqQjV4TnQ1QmNiQ2hDbmg4XzE3NzM4MzE3OTI6MTc3MzgzNTM5Ml9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC6/CC62.png)
 
 在`hashCode()`中调用`getValue()`获取value值
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=YjVjZjgyNTcwNjgxZGY2YTRhNjk3NjYyN2IxNGFlMzVfdm1teXhwMzhDTUVUSHpLWThhQVdSdVIzUmdDRnZxaGZfVG9rZW46UmZadmJ6Q3dvb0hSR2x4NXp5amNXYlpTbmViXzE3NzM4MzE3OTI6MTc3MzgzNTM5Ml9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC6/CC63.png)
 
 实际上就是获取map中key对应的value
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=OTdhNWE5MjZhN2ZhN2MwNzYwOWRjNmQ1YzNjZDc0MWZfdEdtaUV6dTFSMWpkbTRQOVczMUVqbm5Gd1VNcGtkMkFfVG9rZW46VnlwWGJoTkJjb0lHdUJ4YTc4cWNQMnd4bmRiXzE3NzM4MzE3OTI6MTc3MzgzNTM5Ml9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC6/CC64.png)
 
 进入`get()`方法，我们找到了关键点
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=MzJlYWFkYmE5ZGQxZGU4M2IwYjYzMDAwMmViNjRkZmZfSWM2QXB2WldZejIxSWoxbWFQNFdVYk9INnhzdHB1ZkFfVG9rZW46UXFCSWJlSjlRb1BsYkx4cFVjVWNpbjl3bjZlXzE3NzM4MzE3OTI6MTc3MzgzNTM5Ml9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC6/CC65.png)
 
 ```TypeScript
 public Object get(Object key) {
@@ -244,7 +253,7 @@ unserialize("ser.bin");
 
 命令执行成功
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=YmUyYTdkMWExMTYxMjQ2NjhjNWFjMmRkOGY4MDdjNDhfRkVWMUNiQmZkZ0pBQVpQMVpoT1VJenVKaEowQjMwdVpfVG9rZW46SlVlTmJWQnlxb0NvakF4UWtGcmM5NmxqbndkXzE3NzM4MzE3OTI6MTc3MzgzNTM5Ml9WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC6/CC66.png)
 
 ## 0x03 小结
 
