@@ -1,3 +1,11 @@
+---
+title: Java反序列化-CC4链 & CC2链
+date: 2026-03-15
+category: Java
+tags: ["web", "ctf", "Java反序列化"]
+excerpt: 42连打，莱万汀
+---
+
 # Java反序列化-CC4链 & CC2链
 
 ## 0x01 写在前面
@@ -35,7 +43,7 @@ Gadget chain:
 
 `InvokerTransformer.transform()`老朋友了，对`transform()`find Usages，在`TransformingComparator.compare()`实现了调用
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NjA4YWM2ZWNkZjU3MWU2YTZkMzFkMDk1YmI0MTgxODRfMlFXY1JyTG05RFJjNm1rVWZJWkhkM2IxNm0xZUFzYmNfVG9rZW46SGp1MGJsZlJQb1dpZ3V4N09TMmNkQllDbmZlXzE3NzM4MzU5OTM6MTc3MzgzOTU5M19WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC42/CC421.PNG)
 
 写个简单的Demo测试一下
 
@@ -50,7 +58,7 @@ transformingComparator.compare(r,new Object());
 
 官方的链子中使用了`PriorityQueue.readObject()`完成了`compare()`方法的调用，跟进其看看如何实现
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=NGIwNDgwMTRkZjA5N2JkYmQ3MDczMmYyN2RlY2RlYWJfMVJUZlI5c0Vqc25yYUc0R1Y0VE9FZzdaNnR1Q2RBTEVfVG9rZW46SUVYSGJCZDBBb01oTDZ4R0RCRWNkU3FtbkxkXzE3NzM4MzU5OTM6MTc3MzgzOTU5M19WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC42/CC422.PNG)
 
 `readObject()`最后调用了`heapify()`，我们跟进
 
@@ -131,7 +139,7 @@ unserialize("ser.bin");
 
 我们发现在`heapify()`内部，size的值为0，没有进入for代码块，也就没有触发`siftDown()`了
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=MjgyNWZjOTY3MGYwZjc5NGIzZWZjOWNlYzk2NGQ2MWFfaWNVdm1GOHBPRlVZR2pJbHd2cGRtMmswdTByQXZhVERfVG9rZW46VTJUSmJFZEt2bzFUaEx4YXFicWNIanlTbnRiXzE3NzM4MzU5OTM6MTc3MzgzOTU5M19WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC42/CC423.PNG)
 
 调用 `priorityQueue.add(element)`，都会将元素插入堆中，并使 `size` 增加 1
 
@@ -144,7 +152,7 @@ priorityQueue.add(1);
 
 但是发生了报错，我们首先跟进`add()->offer()->siftUp()->siftUpUsingComparator()`
 
-```C++
+```Java
 private void siftUpUsingComparator(int k, E x) {
     while (k > 0) {
         int parent = (k - 1) >>> 1;
@@ -302,7 +310,7 @@ sizeField.set(priorityQueue, 2);
 
 最后是流程图
 
-![img](https://my.feishu.cn/space/api/box/stream/download/asynccode/?code=MDUzNzgwY2RmMTY0Y2ZmMWFiOWJmYzg1MmU1ZTMzMzZfb0h0bVJUMHZDYWFCd1JhZ2FxVHliS0t2aXpEVThSVkhfVG9rZW46WWFMNGJ4cGk1bzFqb0l4QW9tNmNZZ3dJbmhnXzE3NzM4MzU5OTM6MTc3MzgzOTU5M19WNA)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/CC42/CC424.PNG)
 
 参考:
 
