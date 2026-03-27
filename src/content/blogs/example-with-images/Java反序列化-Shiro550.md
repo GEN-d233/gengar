@@ -181,29 +181,29 @@ private static final byte[] DEFAULT_CIPHER_KEY_BYTES = Base64.decode("kPH+bIxk5D
 
 下面我们来调试一下解密过程，在`AbstractRememberMeManager.getRememberedPrincipals()`下一个断点进行调试
 
-![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S12.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S13.png)
 
 在bp中发个包，注意此时我们要把Cookie中的sessionID删除，不然后端不会解析我们的加密串
 
-![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S13.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S14.png)
 
 进入`getRememberedSerializedIdentity()`，先获取Cookie值，再对其进行Base64解码
 
-![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S14.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S15.png)
 
 接着进入`convertBytesToPrincipals()`，调用`decrypt()`对字节数组进行解码
 
-![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S15.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S16.png)
 
 跟进`decrypt()`，获取密钥后进行AES解密方法
 
-![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S16.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S17.png)
 
 对字节数组解密完成后将其反序列化
 
-![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S17.png)
-
 ![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S18.png)
+
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S19.png)
 
 以上就是完整的Cookie解密过程
 
@@ -282,7 +282,7 @@ public class DNSURL {
 
 用脚本机密后放入Cookie中，记得删除JSESSIONID否则服务端不会解析Cookie
 
-![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S19.png)
+![img](https://raw.githubusercontent.com/GEN-d233/gengar/refs/heads/main/public/Shiro550/S20.png)
 
 完成DNS查询，说明反序列化成功
 
